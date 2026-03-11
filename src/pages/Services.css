@@ -1,0 +1,226 @@
+/* Services Page Styles */
+
+/* Benefits Section */
+.benefits {
+    padding: 60px 0 100px;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    margin-top: 60px;
+}
+
+.benefit-card {
+    padding: 40px 28px;
+    text-align: center;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    border-radius: 24px;
+    background: var(--ultra-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-glass);
+}
+
+.benefit-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-elevated);
+}
+
+.benefit-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 24px;
+    background: linear-gradient(135deg, var(--primary-red), var(--light-red));
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: white;
+    box-shadow: 0 10px 28px rgba(255, 59, 48, 0.3);
+}
+
+.benefit-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.benefit-desc {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 1.05rem;
+}
+
+/* Services List */
+.services-list {
+    padding: 80px 0;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.service-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    padding: 60px 0;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.service-item:last-child {
+    border-bottom: none;
+}
+
+.service-item:nth-child(even) {
+    direction: rtl;
+}
+
+.service-item:nth-child(even)>* {
+    direction: ltr;
+}
+
+.service-content h3 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+.service-content p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+.service-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.service-content ul li {
+    padding: 10px 0;
+    padding-left: 32px;
+    position: relative;
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.service-content ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, var(--primary-red), var(--light-red));
+    border-radius: 50%;
+}
+
+.service-image {
+    background: var(--glass-white);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.service-image .lucide {
+    width: 120px;
+    height: 120px;
+    color: var(--primary-red);
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 100px 0;
+    text-align: center;
+}
+
+.cta-card {
+    background: linear-gradient(135deg, var(--primary-red), var(--deep-red));
+    border-radius: 32px;
+    padding: 60px 40px;
+    color: white;
+}
+
+.cta-card h2 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.cta-card p {
+    font-size: 1.2rem;
+    margin-bottom: 32px;
+    opacity: 0.9;
+}
+
+.cta-card .btn-primary {
+    background: white;
+    color: var(--deep-red);
+}
+
+.cta-card .btn-primary:hover {
+    background: #f0f0f0;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .service-item {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .service-item:nth-child(even) {
+        direction: ltr;
+    }
+
+    .service-image {
+        min-height: 200px;
+    }
+
+    .service-image .lucide {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .benefits {
+        padding: 40px 0 80px;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .services-list {
+        padding: 60px 0;
+    }
+
+    .service-item {
+        padding: 40px 0;
+    }
+
+    .cta-section {
+        padding: 60px 0;
+    }
+
+    .cta-card {
+        padding: 40px 24px;
+    }
+
+    .cta-card h2 {
+        font-size: 1.8rem;
+    }
+}

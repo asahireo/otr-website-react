@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Transfer Remittance - Fast, Secure & Affordable Money Transfer</title>
+    <meta name="description" content="Licensed by Bank Negara Malaysia since 2006. Send money to 200+ countries with competitive rates and instant transfers through OTR mobile app.">
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    
+    <!-- External CSS Files -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+    <!-- Liquid Animation SVG Filter -->
+    <svg class="liquid-filter">
+        <defs>
+            <filter id="gooey">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+                <feColorMatrix in="blur" mode="matrix" 
+                    values="1 0 0 0 0  
+                            0 1 0 0 0  
+                            0 0 1 0 0  
+                            0 0 0 18 -7" result="goo"/>
+                <feBlend in="SourceGraphic" in2="goo"/>
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Liquid Background Animation -->
+    <div class="liquid-background">
+        <div class="liquid-blob blob-1"></div>
+        <div class="liquid-blob blob-2"></div>
+        <div class="liquid-blob blob-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="glass-card">
+        <nav>
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <img src="assets/images/otr-logo.png" alt="OTR Logo">
+                </div>
+                <a href="#" class="logo">One Transfer Remittance</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#rates" onclick="scrollToCalculator()">Rates</a></li>
+                <li><a href="#branches">Branches</a></li>
+                <li><a href="#support">Support</a></li>
+            </ul>
+            <a href="#" class="nav-cta" onclick="redirectToAppStore()">Send Money</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content animate-in">
+                        <h1>Fast, Secure & Affordable Money Transfer</h1>
+                        <p class="hero-subtitle">Licensed by Bank Negara Malaysia since 2006. Serving customers across 200+ countries with competitive rates and instant transfers through our OTR mobile app.</p>
+                        <div class="hero-ctas">
+                            <a href="#" class="btn-primary" onclick="redirectToAppStore()">Send Money Now</a>
+                            <a href="#rates" class="btn-secondary" onclick="scrollToCalculator()">Check Rates</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Calculator Widget -->
+                    <div class="calculator-widget" id="calculator">
+                        <div class="calculator-header">
+                            <h3 class="calculator-title">Exchange Calculator</h3>
+                            <p class="calculator-subtitle">Get live exchange rates instantly</p>
+                        </div>
+                        
+                        <form class="calc-form">
+                            <div class="form-group">
+                                <label class="form-label">You send</label>
+                                <input type="number" class="form-input" id="sendAmount" placeholder="200.00" value="200">
+                            </div>
+                            
+                            <div class="currency-row">
+                                <div class="form-group">
+                                    <label class="form-label">From</label>
+                                    <select class="form-select" id="fromCurrency">
+                                        <option value="MYR">🇲🇾 MYR</option>
+                                        <option value="USD">🇺🇸 USD</option>
+                                        <option value="SGD">🇸🇬 SGD</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="exchange-icon">⇄</div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">To</label>
+                                    <select class="form-select" id="toCurrency">
+                                        <option value="BDT">🇧🇩 BDT</option>
+                                        <option value="INR">🇮🇳 INR</option>
+                                        <option value="PKR">🇵🇰 PKR</option>
+                                        <option value="PHP">🇵🇭 PHP</option>
+                                        <option value="NPR">🇳🇵 NPR</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="rate-display">
+                                <div class="rate-text">Current Rate</div>
+                                <div class="rate-value" id="currentRate">1.00 MYR = 28.7 BDT</div>
+                            </div>
+                            
+                            <div class="calc-result">
+                                <div class="result-label">They receive</div>
+                                <div class="result-amount" id="receiveAmount">5,740.00 BDT</div>
+                            </div>
+                            
+                            <div class="transfer-fee">
+                                <div class="fee-label">Transfer fee</div>
+                                <div class="fee-amount" id="transferFee">10.00 MYR</div>
+                            </div>
+                            
+                            <button type="button" class="calc-btn" onclick="startTransfer()">Start Transfer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits" id="services">
+            <div class="container">
+                <h2 class="section-title">Why Choose One Transfer Remittance?</h2>
+                <p class="section-subtitle">Malaysia's trusted remittance partner since 2006, regulated by Bank Negara Malaysia</p>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🛡️</div>
+                        <h3 class="benefit-title">Bank Negara Malaysia Licensed</h3>
+                        <p class="benefit-desc">Fully regulated Money Service Business licensed by Bank Negara Malaysia since 2006</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💰</div>
+                        <h3 class="benefit-title">Competitive Rates</h3>
+                        <p class="benefit-desc">Transparent pricing with competitive exchange rates and fair fees for international money transfers</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">⚡</div>
+                        <h3 class="benefit-title">Instant Transfers</h3>
+                        <p class="benefit-desc">Real-time money transfers to bank accounts with OTR mobile app convenience</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🔒</div>
+                        <h3 class="benefit-title">100% Secure</h3>
+                        <p class="benefit-desc">24/7 customer support and real-time transaction tracking</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Transfer Section -->
+        <section class="how-to-transfer">
+            <div class="container">
+                <h2 class="section-title">How to Send Money</h2>
+                <p class="section-subtitle">Choose your preferred method to send money with One Transfer Remittance</p>
+                
+                <div class="transfer-methods">
+                    <div class="transfer-card">
+                        <div class="transfer-number">1</div>
+                        <h3 class="transfer-title">Visit Our Store</h3>
+                        <p class="transfer-desc">Come and visit us in person at any of our branches. Get a member of our team to assist you with a transaction or to register for the OTR mobile application.</p>
+                    </div>
+                    <div class="transfer-card">
+                        <div class="transfer-number">2</div>
+                        <h3 class="transfer-title">Through OTR App</h3>
+                        <p class="transfer-desc">Download the OTR app to equip yourself with capabilities to send money at anytime, from anywhere! Available on Android and iOS.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- App Section -->
+        <section class="app-section">
+            <div class="container">
+                <div class="app-content">
+                    <div class="app-info glass-card">
+                        <h2>OTR Mobile App</h2>
+                        <p class="hero-subtitle">Experience ultimate convenience sending money anytime, anywhere with our award-winning OTR mobile application.</p>
+                        
+                        <ul class="app-features">
+                            <li>Live exchange rates with instant conversion</li>
+                            <li>Multiple secure payment methods</li>
+                            <li>24/7 real-time transaction tracking</li>
+                            <li>Global network access</li>
+                        </ul>
+                        
+                        <div class="support-contact">
+                            <div style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 8px;">24/7 Support</div>
+                            <a href="tel:+601157864498" class="support-number">+60 11-5786 4498</a>
+                        </div>
+                        
+                        <div class="app-buttons">
+                            <a href="#" class="app-btn" id="appStoreBtn">📱 Download App</a>
+                        </div>
+                    </div>
+                    
+                    <div class="phone-mockup">
+                        <div class="video-container">
+                            <video autoplay muted loop playsinline>
+                                <source src="assets/videos/otr-app-demo.mp4" type="video/mp4">
+                                <img src="assets/images/otr-app-demo.gif" alt="OTR App Demo" style="width: 100%; height: 100%; object-fit: cover;">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Locations Section -->
+        <section class="locations" id="branches">
+            <div class="container">
+                <h2 class="section-title">Our Branch Locations</h2>
+                <p class="section-subtitle">Visit us at any of our convenient locations across Malaysia</p>
+                
+                <div class="locations-grid">
+                    <div class="location-card">
+                        <div class="location-icon">📍</div>
+                        <h3 class="location-name">Kampung Baru, Kuala Lumpur</h3>
+                        <a href="https://maps.app.goo.gl/cFnjxoroXm2gprui6" class="location-link" target="_blank">View on Google Maps</a>
+                    </div>
+                    <div class="location-card">
+                        <div class="location-icon">📍</div>
+                        <h3 class="location-name">Plaza Idaman, Kuala Lumpur</h3>
+                        <a href="https://maps.app.goo.gl/7jXkVFX6shFEm9bQA" class="location-link" target="_blank">View on Google Maps</a>
+                    </div>
+                    <div class="location-card">
+                        <div class="location-icon">📍</div>
+                        <h3 class="location-name">Shah Alam, Selangor</h3>
+                        <a href="https://maps.app.goo.gl/NFJKtD1gdsEec6qH6" class="location-link" target="_blank">View on Google Maps</a>
+                    </div>
+                    <div class="location-card">
+                        <div class="location-icon">📍</div>
+                        <h3 class="location-name">Penang, Sungai Bakap</h3>
+                        <a href="https://maps.app.goo.gl/ffwjWQcd9VqFZfFr9" class="location-link" target="_blank">View on Google Maps</a>
+                    </div>
+                    <div class="location-card">
+                        <div class="location-icon">📍</div>
+                        <h3 class="location-name">Kluang, Johor</h3>
+                        <a href="https://maps.app.goo.gl/tqW4usHZXNg6XGLZ6" class="location-link" target="_blank">View on Google Maps</a>
+                    </div>
+                    <div class="location-card">
+                        <div class="location-icon">📍</div>
+                        <h3 class="location-name">Batu Pahat, Johor</h3>
+                        <a href="https://maps.app.goo.gl/Tk2Adq2koJTi2keR8" class="location-link" target="_blank">View on Google Maps</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content glass-card">
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Money Transfer</a></li>
+                            <li><a href="#">Corporate Solutions</a></li>
+                            <li><a href="#">International Remittance</a></li>
+                            <li><a href="#">Currency Exchange</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Support</h3>
+                        <ul>
+                            <li><a href="#" id="support">Help Center</a></li>
+                            <li><a href="#">Track Transfer</a></li>
+                            <li><a href="tel:+601157864498">24/7 Support: +60 11-5786 4498</a></li>
+                            <li><a href="#branches">Branch Locator</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="#">About OTR</a></li>
+                            <li><a href="#">Bank Negara Compliance</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 One Transfer Remittance Sdn Bhd. Licensed by Bank Negara Malaysia. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

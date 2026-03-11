@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - One Transfer Remittance</title>
+    <meta name="description" content="Discover OTR's money transfer services. Licensed by Bank Negara Malaysia since 2006.">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Benefits Section */
+        .benefits {
+            padding: 60px 0 100px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .benefit-card {
+            padding: 40px 28px;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            border-radius: 24px;
+            background: var(--ultra-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-glass);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-elevated);
+        }
+
+        .benefit-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--primary-red), var(--light-red));
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 10px 28px rgba(255, 59, 48, 0.3);
+        }
+
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .benefit-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+
+        /* Services List */
+        .services-list {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .service-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 60px 0;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .service-item:last-child {
+            border-bottom: none;
+        }
+
+        .service-item:nth-child(even) {
+            direction: rtl;
+        }
+
+        .service-item:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .service-content h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .service-content p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .service-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .service-content ul li {
+            padding: 10px 0;
+            padding-left: 32px;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .service-content ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--primary-red), var(--light-red));
+            border-radius: 50%;
+        }
+
+        .service-image {
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+        }
+
+        .service-image .lucide {
+            width: 120px;
+            height: 120px;
+            color: var(--primary-red);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, var(--primary-red), var(--deep-red));
+            border-radius: 32px;
+            padding: 60px 40px;
+            color: white;
+        }
+
+        .cta-card h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .cta-card p {
+            font-size: 1.2rem;
+            margin-bottom: 32px;
+            opacity: 0.9;
+        }
+
+        .cta-card .btn-primary {
+            background: white;
+            color: var(--deep-red);
+        }
+
+        .cta-card .btn-primary:hover {
+            background: #f0f0f0;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .service-item {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .service-item:nth-child(even) {
+                direction: ltr;
+            }
+
+            .service-image {
+                min-height: 200px;
+            }
+
+            .service-image .lucide {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .benefits {
+                padding: 40px 0 80px;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-list {
+                padding: 60px 0;
+            }
+
+            .service-item {
+                padding: 40px 0;
+            }
+
+            .cta-section {
+                padding: 60px 0;
+            }
+
+            .cta-card {
+                padding: 40px 24px;
+            }
+
+            .cta-card h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Liquid Animation SVG Filter -->
+    <svg class="liquid-filter">
+        <defs>
+            <filter id="gooey">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                <feBlend in="SourceGraphic" in2="goo" />
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="liquid-background">
+        <div class="liquid-blob blob-1"></div>
+        <div class="liquid-blob blob-2"></div>
+        <div class="liquid-blob blob-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="glass-card">
+        <nav>
+            <a href="index.html" class="logo-container">
+                <div class="logo-icon">
+                    <img src="Assets/images/otr-logo.svg" alt="OTR Logo">
+                </div>
+                <span class="logo">One Transfer Remittance</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+                <li><a href="app.html">App</a></li>
+                <li><a href="branches.html">Branches</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <a href="#" class="nav-cta" onclick="redirectToAppStore()">Send Money</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Our Services</h1>
+                <p>Malaysia's trusted remittance partner since 2006, regulated by Bank Negara Malaysia</p>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits">
+            <div class="container">
+                <h2 class="section-title">Why Choose One Transfer Remittance?</h2>
+                <p class="section-subtitle">We're committed to making international money transfers fast, secure, and affordable</p>
+
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i data-lucide="shield-check"></i></div>
+                        <h3 class="benefit-title">Bank Negara Malaysia Licensed</h3>
+                        <p class="benefit-desc">Fully regulated Money Service Business licensed by Bank Negara Malaysia since 2006</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i data-lucide="banknote"></i></div>
+                        <h3 class="benefit-title">Competitive Rates</h3>
+                        <p class="benefit-desc">Transparent pricing with competitive exchange rates and fair fees for international money transfers</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i data-lucide="zap"></i></div>
+                        <h3 class="benefit-title">Instant Transfers</h3>
+                        <p class="benefit-desc">Real-time money transfers to bank accounts with OTR mobile app convenience</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i data-lucide="lock"></i></div>
+                        <h3 class="benefit-title">100% Secure</h3>
+                        <p class="benefit-desc">24/7 customer support and real-time transaction tracking</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services List -->
+        <section class="services-list">
+            <div class="container">
+                <div class="service-item">
+                    <div class="service-content">
+                        <h3>International Money Transfer</h3>
+                        <p>Send money to over 200 countries worldwide with competitive exchange rates and low fees. Your loved ones can receive funds through bank deposits, cash pickup, or mobile wallets.</p>
+                        <ul>
+                            <li>Bank account deposits</li>
+                            <li>Cash pickup at partner locations</li>
+                            <li>Mobile wallet transfers</li>
+                            <li>Real-time tracking</li>
+                        </ul>
+                    </div>
+                    <div class="service-image">
+                        <i data-lucide="globe"></i>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-content">
+                        <h3>Currency Exchange</h3>
+                        <p>Get competitive exchange rates for major world currencies. Whether you're traveling or need foreign currency for business, we offer transparent rates with no hidden fees.</p>
+                        <ul>
+                            <li>Competitive exchange rates</li>
+                            <li>Multiple currency options</li>
+                            <li>No hidden charges</li>
+                            <li>Instant rate quotes</li>
+                        </ul>
+                    </div>
+                    <div class="service-image">
+                        <i data-lucide="coins"></i>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-content">
+                        <h3>Corporate Solutions</h3>
+                        <p>Tailored remittance solutions for businesses. Streamline your international payments with dedicated support, bulk transfers, and competitive corporate rates.</p>
+                        <ul>
+                            <li>Bulk transfer capabilities</li>
+                            <li>Dedicated account manager</li>
+                            <li>API integration available</li>
+                            <li>Custom reporting</li>
+                        </ul>
+                    </div>
+                    <div class="service-image">
+                        <i data-lucide="building-2"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-card">
+                    <h2>Ready to Send Money?</h2>
+                    <p>Download the OTR app and start sending money to your loved ones today</p>
+                    <a href="#" class="btn-primary" onclick="redirectToAppStore()">Get Started Now</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content glass-card">
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="services.html">Money Transfer</a></li>
+                            <li><a href="services.html">Corporate Solutions</a></li>
+                            <li><a href="services.html">International Remittance</a></li>
+                            <li><a href="services.html">Currency Exchange</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Support</h3>
+                        <ul>
+                            <li><a href="support.html">Help Center</a></li>
+                            <li><a href="support.html">Track Transfer</a></li>
+                            <li><a href="branches.html">Branch Locator</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="services.html">About OTR</a></li>
+                            <li><a href="services.html">Bank Negara Compliance</a></li>
+                            <li><a href="support.html">Careers</a></li>
+                            <li><a href="support.html">Press</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 One Transfer Remittance Sdn Bhd. Licensed by Bank Negara Malaysia. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function detectDevice() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) return 'ios';
+            if (/android/i.test(userAgent)) return 'android';
+            return 'desktop';
+        }
+
+        function redirectToAppStore() {
+            const device = detectDevice();
+            switch (device) {
+                case 'ios':
+                    window.open('https://apps.apple.com/my/app/onetransfer-remittance/id1497130506', '_blank');
+                    break;
+                default:
+                    window.open('https://play.google.com/store/apps/details?id=com.mobilityone.onetransfer.android.app&pcampaignid=web_share', '_blank');
+            }
+        }
+
+        // Header scroll effect
+        const header = document.querySelector('header');
+
+        function updateHeaderLayout() {
+            if (!header) return;
+            const isMobile = window.innerWidth <= 1100;
+            if (isMobile) {
+                header.style.left = '12px';
+                header.style.right = '12px';
+                header.style.transform = 'none';
+                header.style.width = 'auto';
+                header.style.top = window.scrollY > 10 ? '12px' : '24px';
+            } else {
+                header.style.left = '50%';
+                header.style.right = '';
+                header.style.transform = 'translateX(-50%)';
+                header.style.width = window.scrollY > 50 ? '95%' : '90%';
+                header.style.top = window.scrollY > 50 ? '10px' : '24px';
+            }
+        }
+
+        let ticking = false;
+        window.addEventListener('scroll', function () {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    updateHeaderLayout();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        window.addEventListener('resize', updateHeaderLayout);
+
+        updateHeaderLayout();
+
+        document.addEventListener('DOMContentLoaded', function () {
+            lucide.createIcons();
+
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (mobileToggle && navLinks) {
+                mobileToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                });
+
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileToggle.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

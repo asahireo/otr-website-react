@@ -1,0 +1,37 @@
+# Netlify redirects for One Transfer Remittance
+
+# Clean URLs for English pages (default)
+/about           /en/about.html         200
+/services        /en/services.html      200
+/legal           /en/legal.html         200
+/support         /en/support.html       200
+/rates           /en/rates.html         200
+/track           /en/track.html         200
+/branches        /en/branches.html      200
+/app             /en/app.html           200
+
+# Bengali language redirects
+/bn              /index-bn.html         200
+/bn/about        /bn/about.html         200
+/bn/services     /bn/services.html      200
+/bn/legal        /bn/legal.html         200
+/bn/support      /bn/support.html       200
+/bn/rates        /bn/rates.html         200
+/bn/track        /bn/track.html         200
+/bn/branches     /bn/branches.html      200
+/bn/app          /bn/app.html           200
+
+# Language detection (optional - for future implementation)
+# /               /index.html            200  Country=BD  Language=bn
+# /               /index-bn.html         302  Country=BD
+# /               /index.html            200
+
+# API endpoints (for future calculator API)
+/api/rates       /.netlify/functions/rates          200
+/api/calculator  /.netlify/functions/calculator     200
+
+# Force HTTPS
+http://otr-remittance.netlify.app/*  https://otr-remittance.netlify.app/:splat  301!
+
+# 404 fallback
+/*               /index.html            200

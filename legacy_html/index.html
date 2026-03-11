@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Transfer Remittance - Fast, Secure & Affordable Money Transfer</title>
+    <meta name="description"
+        content="Licensed by Bank Negara Malaysia since 2006. Send money to 200+ countries with competitive rates and instant transfers through OTR mobile app.">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Hero Section */
+        .hero {
+            padding: 20px 0 100px;
+            margin-bottom: 0;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 520px;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content {
+            padding: 40px;
+            text-align: left;
+            background: var(--ultra-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: var(--shadow-glass);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 32px;
+            color: var(--text-primary);
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 0;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* Exchange Calculator Card */
+        .calculator-card {
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: var(--shadow-elevated);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .calculator-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+        }
+
+        .calculator-header {
+            background: linear-gradient(135deg, var(--primary-red), var(--deep-red));
+            color: white;
+            padding: 24px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .calculator-body {
+            padding: 32px 28px;
+        }
+
+        .section-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+
+        .country-selector {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #E5E5EA;
+            border-radius: 16px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            background: var(--pure-white);
+            margin-bottom: 24px;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%236D6D80' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+            padding-right: 45px;
+            transition: all 0.3s ease;
+        }
+
+        .country-selector:hover {
+            border-color: var(--primary-red);
+        }
+
+        .country-selector:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px var(--glass-red);
+        }
+
+        .receiver-methods-label {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            text-align: center;
+        }
+
+        .receiver-methods {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .method-option {
+            flex: 1;
+            padding: 16px 8px;
+            border: 2px solid #E5E5EA;
+            border-radius: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--pure-white);
+        }
+
+        .method-option:hover {
+            border-color: var(--light-red);
+            transform: translateY(-2px);
+        }
+
+        .method-option.selected {
+            border-color: var(--primary-red);
+            background: var(--glass-red);
+        }
+
+        .method-icon {
+            font-size: 1.8rem;
+            margin-bottom: 6px;
+        }
+
+        .method-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .amount-input-wrapper {
+            margin-bottom: 24px;
+        }
+
+        .amount-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #E5E5EA;
+            border-radius: 16px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            background: var(--pure-white);
+            transition: all 0.3s ease;
+        }
+
+        .amount-input:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px var(--glass-red);
+        }
+
+        .convert-button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary-red), var(--deep-red));
+            border: none;
+            border-radius: 16px;
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 24px;
+        }
+
+        .convert-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 59, 48, 0.4);
+        }
+
+        .convert-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .convert-button.loading::after {
+            content: "";
+            width: 14px;
+            height: 14px;
+            margin-left: 8px;
+            border: 2px solid white;
+            border-top-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .results-section {
+            display: none;
+            margin-bottom: 24px;
+        }
+
+        .results-section.visible {
+            display: block;
+        }
+
+        .results-header {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            letter-spacing: 0.3px;
+        }
+
+        .result-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: var(--light-gray);
+            border-radius: 16px;
+        }
+
+        .result-icon-box {
+            width: 48px;
+            height: 48px;
+            background: var(--pure-white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .result-icon {
+            font-size: 1.3rem;
+        }
+
+        .result-details {
+            flex: 1;
+        }
+
+        .result-provider {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .result-info {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .result-info div {
+            margin-bottom: 2px;
+        }
+
+        .send-money-button {
+            width: 100%;
+            padding: 16px;
+            background: var(--text-light);
+            border: none;
+            border-radius: 16px;
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: not-allowed;
+            transition: all 0.3s ease;
+        }
+
+        .send-money-button.active {
+            background: linear-gradient(135deg, var(--primary-red), var(--deep-red));
+            cursor: pointer;
+        }
+
+        .send-money-button.active:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 59, 48, 0.4);
+        }
+
+        /* Quick Links Section */
+        .quick-links {
+            padding: 80px 0;
+        }
+
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .quick-link-card {
+            padding: 32px 24px;
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .quick-link-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-elevated);
+        }
+
+        .quick-link-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary-red), var(--light-red));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .quick-link-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .quick-link-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-ctas {
+                justify-content: center;
+            }
+
+            .calculator-card {
+                max-width: 520px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 15px 0 60px;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .calculator-body {
+                padding: 28px 24px;
+            }
+
+            .receiver-methods {
+                flex-direction: row;
+            }
+
+            .method-option {
+                padding: 14px 6px;
+            }
+
+            .method-icon {
+                font-size: 1.5rem;
+            }
+
+            .method-label {
+                font-size: 0.75rem;
+            }
+
+            .quick-links {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-content {
+                padding: 30px 20px;
+            }
+
+            .calculator-header {
+                font-size: 0.95rem;
+                padding: 20px;
+            }
+
+            .hero {
+                padding: 10px 0 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Liquid Animation SVG Filter -->
+    <svg class="liquid-filter">
+        <defs>
+            <filter id="gooey">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  
+                            0 1 0 0 0  
+                            0 0 1 0 0  
+                            0 0 0 18 -7" result="goo" />
+                <feBlend in="SourceGraphic" in2="goo" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Liquid Background Animation -->
+    <div class="liquid-background">
+        <div class="liquid-blob blob-1"></div>
+        <div class="liquid-blob blob-2"></div>
+        <div class="liquid-blob blob-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="glass-card">
+        <nav>
+            <a href="index.html" class="logo-container">
+                <div class="logo-icon">
+                    <img src="Assets/images/otr-logo.svg" alt="OTR Logo">
+                </div>
+                <span class="logo">
+                    <span>One</span>
+                    <span>Transfer</span>
+                    <span>Remittance</span>
+                </span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+                <li><a href="app.html">App</a></li>
+                <li><a href="branches.html">Branches</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <a href="#" class="nav-cta" onclick="redirectToAppStore()">Send Money</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content animate-in">
+                        <h1>Fast, Secure & Affordable Money Transfer</h1>
+                        <p class="hero-subtitle">Licensed by Bank Negara Malaysia since 2006. Serving customers across
+                            200+ countries with competitive rates and instant transfers through our OTR mobile app.</p>
+                    </div>
+
+                    <!-- Exchange Calculator Card -->
+                    <div class="calculator-card">
+                        <div class="calculator-header">Exchange Rate Calculator</div>
+
+                        <div class="calculator-body">
+                            <!-- Receiver Country Selection -->
+                            <div class="section-label">Destination Country</div>
+                            <select class="country-selector" id="receiverCountry">
+                                <option value="">-- Select country --</option>
+                                <option value="BD">BANGLADESH</option>
+                                <option value="IN">INDIA</option>
+                                <option value="PK">PAKISTAN</option>
+                                <option value="PH">PHILIPPINES</option>
+                                <option value="ID">INDONESIA</option>
+                                <option value="NP">NEPAL</option>
+                                <option value="LK">SRI LANKA</option>
+                            </select>
+
+                            <!-- Receiver Methods -->
+                            <div class="receiver-methods-label">Payment Method:</div>
+                            <div class="receiver-methods">
+                                <div class="method-option" data-method="cash">
+                                    <div class="method-icon"><i data-lucide="banknote"></i></div>
+                                    <div class="method-label">Cash Pickup</div>
+                                </div>
+                                <div class="method-option" data-method="ewallet">
+                                    <div class="method-icon"><i data-lucide="credit-card"></i></div>
+                                    <div class="method-label">e-Wallet</div>
+                                </div>
+                                <div class="method-option" data-method="bank">
+                                    <div class="method-icon"><i data-lucide="landmark"></i></div>
+                                    <div class="method-label">Bank</div>
+                                </div>
+                            </div>
+
+                            <!-- Amount -->
+                            <div class="section-label">Transfer Amount</div>
+                            <div class="amount-input-wrapper">
+                                <input type="text" class="amount-input" id="sendAmount" placeholder="MYR 100.00"
+                                    value="MYR 100.00">
+                            </div>
+
+                            <!-- Convert Button -->
+                            <button class="convert-button" id="convertBtn">Calculate Exchange Rate</button>
+                            <div id="calcError" style="display:none;color:#c0392b;font-size:0.9rem;margin-top:10px;">
+                            </div>
+
+                            <!-- Results Section (Hidden until conversion) -->
+                            <div class="results-section" id="resultsSection">
+                                <div class="results-header">Transfer Summary:</div>
+                                <div class="result-item">
+                                    <div class="result-icon-box">
+                                        <div class="result-icon" id="resultIcon"><i data-lucide="banknote"></i></div>
+                                    </div>
+                                    <div class="result-details">
+                                        <div class="result-provider" id="resultProvider">MoneyGram</div>
+                                        <div class="result-info">
+                                            <div>Recipient Gets: <strong id="recipientAmount">2897.11 BDT</strong></div>
+                                            <div>Exchange Rate: <strong id="exchangeRate">28.971 : BDT</strong></div>
+                                            <div>Service Fee: <strong id="serviceFee">10.0 MYR</strong></div>
+                                            <div>Total: <strong id="totalFees">10.0 MYR</strong></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Send Money Button -->
+                            <button class="send-money-button" id="sendMoneyBtn" disabled>Proceed to Send Money</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Links Section -->
+        <section class="quick-links">
+            <div class="container">
+                <div class="quick-links-grid">
+                    <a href="services.html" class="quick-link-card">
+                        <div class="quick-link-icon"><i data-lucide="shield-check"></i></div>
+                        <h3 class="quick-link-title">Our Services</h3>
+                        <p class="quick-link-desc">Discover why thousands trust OTR for money transfers</p>
+                    </a>
+                    <a href="how-it-works.html" class="quick-link-card">
+                        <div class="quick-link-icon"><i data-lucide="zap"></i></div>
+                        <h3 class="quick-link-title">How It Works</h3>
+                        <p class="quick-link-desc">Learn how easy it is to send money with OTR</p>
+                    </a>
+                    <a href="app.html" class="quick-link-card">
+                        <div class="quick-link-icon"><i data-lucide="smartphone"></i></div>
+                        <h3 class="quick-link-title">Download App</h3>
+                        <p class="quick-link-desc">Get the OTR app for instant transfers anytime</p>
+                    </a>
+                    <a href="branches.html" class="quick-link-card">
+                        <div class="quick-link-icon"><i data-lucide="map-pin"></i></div>
+                        <h3 class="quick-link-title">Find Branch</h3>
+                        <p class="quick-link-desc">Locate an OTR branch near you</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content glass-card">
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="services.html">Money Transfer</a></li>
+                            <li><a href="services.html">Corporate Solutions</a></li>
+                            <li><a href="services.html">International Remittance</a></li>
+                            <li><a href="services.html">Currency Exchange</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Support</h3>
+                        <ul>
+                            <li><a href="support.html">Help Center</a></li>
+                            <li><a href="support.html">Track Transfer</a></li>
+                            <li><a href="branches.html">Branch Locator</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="services.html">About OTR</a></li>
+                            <li><a href="services.html">Bank Negara Compliance</a></li>
+                            <li><a href="support.html">Careers</a></li>
+                            <li><a href="support.html">Press</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 One Transfer Remittance Sdn Bhd. Licensed by Bank Negara Malaysia. All rights
+                        reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // State management
+        let selectedMethod = null;
+        let isConverted = false;
+
+        // API config – works for both file:// and http(s)
+        // If opened as file:// use local PHP server origin, otherwise same-origin
+        const API_BASE_ORIGIN = (window.location.protocol === 'file:') ? 'http://127.0.0.1:8000' : '';
+        const FEE_ENDPOINT = `${API_BASE_ORIGIN}/api/GetFeeLookup.php`;
+
+        // Map UI country codes to backend CodeCurrency and currency codes
+        const destinationMap = {
+            BD: { codeCurrency: 'BGD-BDT', currency: 'BDT' },
+            IN: { codeCurrency: 'IND-INR', currency: 'INR' },
+            PK: { codeCurrency: 'PAK-PKR', currency: 'PKR' },
+            PH: { codeCurrency: 'PHL-PHP', currency: 'PHP' },
+            ID: { codeCurrency: 'IDN-IDR', currency: 'IDR' },
+            NP: { codeCurrency: 'NPL-NPR', currency: 'NPR' },
+            LK: { codeCurrency: 'LKA-LKR', currency: 'LKR' }
+        };
+
+        // Map UI method to backend PayMode
+        const payModeMap = {
+            cash: 'CashPickup',
+            ewallet: 'Wallet',
+            bank: 'Bank'
+        };
+
+        // DOM Elements
+        const methodOptions = document.querySelectorAll('.method-option');
+        const convertBtn = document.getElementById('convertBtn');
+        const sendMoneyBtn = document.getElementById('sendMoneyBtn');
+        const resultsSection = document.getElementById('resultsSection');
+        const receiverCountry = document.getElementById('receiverCountry');
+        const sendAmount = document.getElementById('sendAmount');
+        const calcError = document.getElementById('calcError');
+
+        // Method Icons Map
+        const methodIcons = {
+            cash: 'banknote',
+            ewallet: 'credit-card',
+            bank: 'landmark'
+        };
+
+        // Method Labels Map
+        const methodLabels = {
+            cash: 'Cash Pickup',
+            ewallet: 'e-Wallet',
+            bank: 'Bank Account'
+        };
+
+        // Method Selection
+        methodOptions.forEach(option => {
+            option.addEventListener('click', function () {
+                methodOptions.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedMethod = this.dataset.method;
+            });
+        });
+
+        // Format amount input
+        sendAmount.addEventListener('blur', function () {
+            let value = this.value.replace(/[^0-9.]/g, '');
+            if (value) {
+                value = parseFloat(value).toFixed(2);
+                this.value = `MYR ${value}`;
+            }
+        });
+
+        sendAmount.addEventListener('focus', function () {
+            this.value = this.value.replace('MYR ', '');
+        });
+
+        // Convert Button Click
+        convertBtn.addEventListener('click', async function () {
+            clearCalcError();
+            if (!receiverCountry.value) {
+                showCalcError('Please select a destination country.');
+                return;
+            }
+
+            if (!selectedMethod) {
+                showCalcError('Please select a payment method.');
+                return;
+            }
+
+            const amount = parseFloat(sendAmount.value.replace(/[^0-9.]/g, ''));
+            if (!amount || amount <= 0) {
+                showCalcError('Please enter a valid transfer amount.');
+                return;
+            }
+
+            convertBtn.classList.add('loading');
+            convertBtn.disabled = true;
+            convertBtn.textContent = 'Calculating';
+
+            try {
+                const apiData = await callOTRAPI({ amount });
+                displayResults(apiData);
+                isConverted = true;
+                sendMoneyBtn.disabled = false;
+                sendMoneyBtn.classList.add('active');
+            } catch (err) {
+                console.error('API Error:', err);
+                showCalcError(err.message || 'Failed to fetch exchange rates. Please try again.');
+                isConverted = false;
+                sendMoneyBtn.disabled = true;
+                sendMoneyBtn.classList.remove('active');
+            } finally {
+                convertBtn.classList.remove('loading');
+                convertBtn.disabled = false;
+                convertBtn.textContent = 'Calculate Exchange Rate';
+            }
+        });
+
+        async function callOTRAPI({ amount }) {
+            const destination = destinationMap[receiverCountry.value];
+            if (!destination) throw new Error('Unsupported destination.');
+
+            const payMode = payModeMap[selectedMethod] || selectedMethod || '';
+            if (!payMode) throw new Error('Unsupported payment method.');
+
+            const payload = {
+                CodeCurrency: destination.codeCurrency,
+                Amount: amount,
+                PayMode: payMode
+            };
+
+            const response = await fetch(FEE_ENDPOINT, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const json = await response.json();
+            if (!response.ok) {
+                throw new Error(json.message || 'API request failed.');
+            }
+            if (json.success === false) {
+                throw new Error(json.message || 'API returned an error.');
+            }
+
+            const data = json.data || {};
+            const exchangeRate = data.validExchangeRate ?? data.exchangeRate ?? 0;
+            if (!exchangeRate) {
+                throw new Error('Exchange rate unavailable.');
+            }
+
+            const serviceFee = data.totalSendFees ?? data.fee ?? 0;
+            const recipientAmount = amount * exchangeRate;
+            const totalFees = serviceFee;
+
+            return {
+                provider: data.provider || methodLabels[selectedMethod],
+                recipientAmount,
+                exchangeRate,
+                serviceFee,
+                totalFees,
+                currency: destination.currency
+            };
+        }
+
+        function getCurrencyCode(countryCode) {
+            const currencyMap = {
+                'BD': 'BDT',
+                'IN': 'INR',
+                'PK': 'PKR',
+                'PH': 'PHP',
+                'ID': 'IDR',
+                'NP': 'NPR',
+                'LK': 'LKR'
+            };
+            return currencyMap[countryCode] || 'BDT';
+        }
+
+        function displayResults(apiData) {
+            if (!apiData) return;
+
+            const provider = apiData.provider || methodLabels[selectedMethod];
+            const recipientAmount = apiData.recipientAmount || 0;
+            const exchangeRate = apiData.exchangeRate || 0;
+            const serviceFee = apiData.serviceFee || 0;
+            const totalFees = apiData.totalFees || serviceFee;
+            const currency = apiData.currency || getCurrencyCode(receiverCountry.value);
+
+            document.getElementById('resultIcon').innerHTML = `<i data-lucide="${methodIcons[selectedMethod]}"></i>`;
+            lucide.createIcons();
+            document.getElementById('resultProvider').textContent = provider;
+            document.getElementById('recipientAmount').textContent = `${parseFloat(recipientAmount).toFixed(2)} ${currency}`;
+            document.getElementById('exchangeRate').textContent = `${parseFloat(exchangeRate).toFixed(6)} : ${currency}`;
+            document.getElementById('serviceFee').textContent = `${parseFloat(serviceFee).toFixed(2)} MYR`;
+            document.getElementById('totalFees').textContent = `${parseFloat(totalFees).toFixed(2)} MYR`;
+
+            resultsSection.classList.add('visible');
+        }
+
+        sendMoneyBtn.addEventListener('click', function () {
+            if (!isConverted) return;
+            redirectToAppStore();
+        });
+
+        function showCalcError(message) {
+            if (!calcError) return;
+            calcError.textContent = message;
+            calcError.style.display = 'block';
+        }
+
+        function clearCalcError() {
+            if (!calcError) return;
+            calcError.textContent = '';
+            calcError.style.display = 'none';
+        }
+
+        function detectDevice() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) return 'ios';
+            if (/android/i.test(userAgent)) return 'android';
+            return 'desktop';
+        }
+
+        function redirectToAppStore() {
+            const device = detectDevice();
+            switch (device) {
+                case 'ios':
+                    window.open('https://apps.apple.com/my/app/onetransfer-remittance/id1497130506', '_blank');
+                    break;
+                default:
+                    window.open('https://play.google.com/store/apps/details?id=com.mobilityone.onetransfer.android.app&pcampaignid=web_share', '_blank');
+            }
+        }
+
+        // Header scroll effect
+        const header = document.querySelector('header');
+
+        function updateHeaderLayout() {
+            if (!header) return;
+            const isMobile = window.innerWidth <= 1100;
+            if (isMobile) {
+                header.style.left = '12px';
+                header.style.right = '12px';
+                header.style.transform = 'none';
+                header.style.width = 'auto';
+                header.style.top = window.scrollY > 10 ? '12px' : '24px';
+            } else {
+                header.style.left = '50%';
+                header.style.right = '';
+                header.style.transform = 'translateX(-50%)';
+                header.style.width = window.scrollY > 50 ? '95%' : '90%';
+                header.style.top = window.scrollY > 50 ? '10px' : '24px';
+            }
+        }
+
+        let ticking = false;
+        window.addEventListener('scroll', function () {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    updateHeaderLayout();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        window.addEventListener('resize', updateHeaderLayout);
+
+        updateHeaderLayout();
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            lucide.createIcons();
+
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (mobileToggle && navLinks) {
+                mobileToggle.addEventListener('click', function () {
+                    this.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                });
+
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function () {
+                        mobileToggle.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

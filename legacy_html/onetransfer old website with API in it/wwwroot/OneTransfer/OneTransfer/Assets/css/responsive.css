@@ -1,0 +1,365 @@
+/* Responsive Design - Mobile First Approach */
+
+/* Tablet Styles - 768px and up */
+@media (min-width: 768px) {
+    .hero-ctas {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    
+    .app-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 60px;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .transfer-methods {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-links {
+        text-align: left;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop Styles - 1024px and up */
+@media (min-width: 1024px) {
+    .hero-grid {
+        grid-template-columns: 1.2fr 480px;
+        text-align: left;
+    }
+    
+    .hero-content {
+        text-align: left;
+    }
+    
+    .calculator-widget {
+        position: sticky;
+        top: 160px;
+        max-width: none;
+    }
+    
+    .nav-links {
+        display: flex;
+    }
+    
+    .app-content {
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+        gap: 80px;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .footer-links {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .currency-row {
+        grid-template-columns: 1fr auto 1fr;
+    }
+    
+    .exchange-icon {
+        margin-bottom: 8px;
+    }
+}
+
+/* Large Desktop Styles - 1200px and up */
+@media (min-width: 1200px) {
+    .container {
+        padding: 0 40px;
+    }
+    
+    nav {
+        padding: 16px 40px;
+    }
+    
+    .logo {
+        font-size: 32px;
+    }
+    
+    .logo-icon {
+        width: 56px;
+        height: 56px;
+    }
+    
+    .video-container {
+        width: 280px;
+        height: 560px;
+    }
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 767px) {
+    /* Header mobile menu - simple implementation */
+    .nav-links {
+        display: none;
+    }
+    
+    /* Mobile hero adjustments */
+    .hero {
+        padding: 40px 0;
+    }
+    
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        min-height: auto;
+    }
+    
+    .hero-content {
+        padding: 30px 20px;
+        text-align: center;
+    }
+    
+    .hero h1 {
+        font-size: 2.2rem;
+        margin-bottom: 24px;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+    }
+    
+    .hero-ctas {
+        flex-direction: column;
+        width: 100%;
+        gap: 16px;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        text-align: center;
+        padding: 18px 30px;
+        font-size: 16px;
+    }
+    
+    /* Mobile calculator */
+    .calculator-widget {
+        padding: 24px 20px;
+        position: relative;
+        top: 0;
+    }
+    
+    .calculator-title {
+        font-size: 1.4rem;
+    }
+    
+    .currency-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .exchange-icon {
+        margin: 12px auto;
+        transform: rotate(90deg);
+    }
+    
+    /* Mobile sections */
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 16px;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 40px;
+    }
+    
+    .benefits, .how-to-transfer, .app-section, .locations {
+        padding: 60px 0;
+    }
+    
+    .benefits-grid, .transfer-methods, .locations-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .benefit-card, .transfer-card, .location-card {
+        padding: 30px 20px;
+    }
+    
+    /* Mobile app section */
+    .app-info {
+        padding: 30px 20px;
+    }
+    
+    .app-info h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+    
+    .phone-mockup {
+        padding: 20px;
+    }
+    
+    .video-container {
+        width: 200px;
+        height: 400px;
+        padding: 16px;
+    }
+    
+    /* Mobile footer */
+    footer {
+        padding: 60px 0 30px;
+        margin-top: 60px;
+    }
+    
+    .footer-content {
+        padding: 40px 20px;
+    }
+    
+    .footer-links {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .footer-section h3 {
+        font-size: 1.2rem;
+        margin-bottom: 16px;
+    }
+    
+    .footer-section ul li {
+        margin-bottom: 8px;
+    }
+    
+    /* Mobile liquid blobs - scale down */
+    .blob-1, .blob-2, .blob-3 {
+        transform: scale(0.6);
+        opacity: 0.4;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+    
+    nav {
+        padding: 12px 16px;
+    }
+    
+    .logo {
+        font-size: 20px;
+    }
+    
+    .logo-icon {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .nav-cta {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .hero-content {
+        padding: 24px 16px;
+    }
+    
+    .calculator-widget {
+        padding: 20px 16px;
+    }
+    
+    .form-input, .form-select {
+        padding: 14px;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    .result-amount {
+        font-size: 1.6rem;
+    }
+    
+    .video-container {
+        width: 180px;
+        height: 360px;
+    }
+    
+    .benefit-icon, .transfer-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .transfer-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+    
+    .location-icon {
+        font-size: 2rem;
+    }
+}
+
+/* Landscape phone optimization */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        padding: 20px 0;
+    }
+    
+    .hero-grid {
+        min-height: auto;
+    }
+    
+    .calculator-widget {
+        position: relative;
+    }
+    
+    .liquid-blob {
+        display: none; /* Hide animations in landscape for better performance */
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo-icon img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .btn-primary:hover, .btn-secondary:hover {
+        transform: none; /* Disable hover animations on touch devices */
+    }
+    
+    .benefit-card:hover, .transfer-card:hover, .location-card:hover {
+        transform: none;
+    }
+    
+    .nav-links a:hover::after {
+        width: 0; /* Disable hover underlines on touch */
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .liquid-blob {
+        animation: none;
+    }
+    
+    .animate-in {
+        animation: none;
+    }
+    
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    html {
+        scroll-behavior: auto;
+    }
+}

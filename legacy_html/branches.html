@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branch Locations - One Transfer Remittance</title>
+    <meta name="description" content="Find an OTR branch near you. Visit us at our convenient locations across Malaysia.">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Locations Section */
+        .locations-section {
+            padding: 60px 0 100px;
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+            margin-top: 60px;
+        }
+
+        .location-card {
+            padding: 36px 28px;
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .location-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-elevated);
+        }
+
+        .location-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .location-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary-red), var(--light-red));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .location-icon .lucide {
+            width: 28px;
+            height: 28px;
+            color: white;
+        }
+
+        .location-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .location-details {
+            margin-bottom: 24px;
+        }
+
+        .location-details p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .location-details .lucide {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            color: var(--primary-red);
+            vertical-align: middle;
+        }
+
+        .location-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-red);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 12px 20px;
+            background: var(--glass-red);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .location-link:hover {
+            background: var(--primary-red);
+            color: white;
+        }
+
+        .location-link .lucide {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .map-container {
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        .map-placeholder {
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .map-placeholder-content {
+            text-align: center;
+        }
+
+        .map-placeholder-content .lucide {
+            width: 64px;
+            height: 64px;
+            color: var(--primary-red);
+            margin-bottom: 16px;
+        }
+
+        .map-placeholder-content p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            padding: 100px 0;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, var(--primary-red), var(--deep-red));
+            border-radius: 32px;
+            padding: 60px 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .contact-card h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .contact-card p {
+            font-size: 1.2rem;
+            margin-bottom: 32px;
+            opacity: 0.9;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            padding: 16px 32px;
+            background: white;
+            border-radius: 16px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-btn .lucide {
+            width: 24px;
+            height: 24px;
+            color: var(--primary-red);
+        }
+
+        .contact-btn.whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .contact-btn.whatsapp .lucide {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .locations-section {
+                padding: 40px 0 80px;
+            }
+
+            .locations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .map-section {
+                padding: 60px 0;
+            }
+
+            .map-placeholder {
+                height: 300px;
+            }
+
+            .contact-cta {
+                padding: 60px 0;
+            }
+
+            .contact-card {
+                padding: 40px 24px;
+            }
+
+            .contact-card h2 {
+                font-size: 1.8rem;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Liquid Animation SVG Filter -->
+    <svg class="liquid-filter">
+        <defs>
+            <filter id="gooey">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                <feBlend in="SourceGraphic" in2="goo" />
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="liquid-background">
+        <div class="liquid-blob blob-1"></div>
+        <div class="liquid-blob blob-2"></div>
+        <div class="liquid-blob blob-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="glass-card">
+        <nav>
+            <a href="index.html" class="logo-container">
+                <div class="logo-icon">
+                    <img src="Assets/images/otr-logo.svg" alt="OTR Logo">
+                </div>
+                <span class="logo">One Transfer Remittance</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+                <li><a href="app.html">App</a></li>
+                <li><a href="branches.html" class="active">Branches</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <a href="#" class="nav-cta" onclick="redirectToAppStore()">Send Money</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Our Branch Locations</h1>
+                <p>Visit us at any of our convenient locations across Malaysia</p>
+            </div>
+        </section>
+
+        <!-- Locations Section -->
+        <section class="locations-section">
+            <div class="container">
+                <div class="locations-grid">
+                    <div class="location-card">
+                        <div class="location-header">
+                            <div class="location-icon"><i data-lucide="map-pin"></i></div>
+                            <h3 class="location-name">Kampung Baru, Kuala Lumpur</h3>
+                        </div>
+                        <div class="location-details">
+                            <p><i data-lucide="map"></i> Kampung Baru, Kuala Lumpur</p>
+                            <p><i data-lucide="clock"></i> Mon - Sat: 9:00 AM - 6:00 PM</p>
+                            <p><i data-lucide="phone"></i> +60 11-5786 4498</p>
+                        </div>
+                        <a href="https://maps.app.goo.gl/cFnjxoroXm2gprui6" class="location-link" target="_blank">
+                            <i data-lucide="external-link"></i> View on Google Maps
+                        </a>
+                    </div>
+
+                    <div class="location-card">
+                        <div class="location-header">
+                            <div class="location-icon"><i data-lucide="map-pin"></i></div>
+                            <h3 class="location-name">Plaza Idaman, Kuala Lumpur</h3>
+                        </div>
+                        <div class="location-details">
+                            <p><i data-lucide="map"></i> Plaza Idaman, Kuala Lumpur</p>
+                            <p><i data-lucide="clock"></i> Mon - Sat: 9:00 AM - 6:00 PM</p>
+                            <p><i data-lucide="phone"></i> +60 11-5786 4498</p>
+                        </div>
+                        <a href="https://maps.app.goo.gl/7jXkVFX6shFEm9bQA" class="location-link" target="_blank">
+                            <i data-lucide="external-link"></i> View on Google Maps
+                        </a>
+                    </div>
+
+                    <div class="location-card">
+                        <div class="location-header">
+                            <div class="location-icon"><i data-lucide="map-pin"></i></div>
+                            <h3 class="location-name">Shah Alam, Selangor</h3>
+                        </div>
+                        <div class="location-details">
+                            <p><i data-lucide="map"></i> Shah Alam, Selangor</p>
+                            <p><i data-lucide="clock"></i> Mon - Sat: 9:00 AM - 6:00 PM</p>
+                            <p><i data-lucide="phone"></i> +60 11-5786 4498</p>
+                        </div>
+                        <a href="https://maps.app.goo.gl/NFJKtD1gdsEec6qH6" class="location-link" target="_blank">
+                            <i data-lucide="external-link"></i> View on Google Maps
+                        </a>
+                    </div>
+
+                    <div class="location-card">
+                        <div class="location-header">
+                            <div class="location-icon"><i data-lucide="map-pin"></i></div>
+                            <h3 class="location-name">Penang, Sungai Bakap</h3>
+                        </div>
+                        <div class="location-details">
+                            <p><i data-lucide="map"></i> Sungai Bakap, Penang</p>
+                            <p><i data-lucide="clock"></i> Mon - Sat: 9:00 AM - 6:00 PM</p>
+                            <p><i data-lucide="phone"></i> +60 11-5786 4498</p>
+                        </div>
+                        <a href="https://maps.app.goo.gl/ffwjWQcd9VqFZfFr9" class="location-link" target="_blank">
+                            <i data-lucide="external-link"></i> View on Google Maps
+                        </a>
+                    </div>
+
+                    <div class="location-card">
+                        <div class="location-header">
+                            <div class="location-icon"><i data-lucide="map-pin"></i></div>
+                            <h3 class="location-name">Kluang, Johor</h3>
+                        </div>
+                        <div class="location-details">
+                            <p><i data-lucide="map"></i> Kluang, Johor</p>
+                            <p><i data-lucide="clock"></i> Mon - Sat: 9:00 AM - 6:00 PM</p>
+                            <p><i data-lucide="phone"></i> +60 11-5786 4498</p>
+                        </div>
+                        <a href="https://maps.app.goo.gl/tqW4usHZXNg6XGLZ6" class="location-link" target="_blank">
+                            <i data-lucide="external-link"></i> View on Google Maps
+                        </a>
+                    </div>
+
+                    <div class="location-card">
+                        <div class="location-header">
+                            <div class="location-icon"><i data-lucide="map-pin"></i></div>
+                            <h3 class="location-name">Batu Pahat, Johor</h3>
+                        </div>
+                        <div class="location-details">
+                            <p><i data-lucide="map"></i> Batu Pahat, Johor</p>
+                            <p><i data-lucide="clock"></i> Mon - Sat: 9:00 AM - 6:00 PM</p>
+                            <p><i data-lucide="phone"></i> +60 11-5786 4498</p>
+                        </div>
+                        <a href="https://maps.app.goo.gl/Tk2Adq2koJTi2keR8" class="location-link" target="_blank">
+                            <i data-lucide="external-link"></i> View on Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact CTA -->
+        <section class="contact-cta">
+            <div class="container">
+                <div class="contact-card">
+                    <h2>Can't Find a Branch Near You?</h2>
+                    <p>Use our mobile app to send money from anywhere, or contact us for assistance</p>
+                    <div class="contact-buttons">
+                        <a href="#" class="contact-btn" onclick="redirectToAppStore()">
+                            <i data-lucide="smartphone"></i> Download App
+                        </a>
+                        <a href="https://wa.me/601157864498?text=Hi%20OTR%20Support%2C%20I%20need%20help" class="contact-btn whatsapp" target="_blank">
+                            <i data-lucide="message-circle"></i> WhatsApp Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content glass-card">
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="services.html">Money Transfer</a></li>
+                            <li><a href="services.html">Corporate Solutions</a></li>
+                            <li><a href="services.html">International Remittance</a></li>
+                            <li><a href="services.html">Currency Exchange</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Support</h3>
+                        <ul>
+                            <li><a href="support.html">Help Center</a></li>
+                            <li><a href="support.html">Track Transfer</a></li>
+                            <li><a href="branches.html">Branch Locator</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="services.html">About OTR</a></li>
+                            <li><a href="services.html">Bank Negara Compliance</a></li>
+                            <li><a href="support.html">Careers</a></li>
+                            <li><a href="support.html">Press</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 One Transfer Remittance Sdn Bhd. Licensed by Bank Negara Malaysia. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function detectDevice() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) return 'ios';
+            if (/android/i.test(userAgent)) return 'android';
+            return 'desktop';
+        }
+
+        function redirectToAppStore() {
+            const device = detectDevice();
+            switch (device) {
+                case 'ios':
+                    window.open('https://apps.apple.com/my/app/onetransfer-remittance/id1497130506', '_blank');
+                    break;
+                default:
+                    window.open('https://play.google.com/store/apps/details?id=com.mobilityone.onetransfer.android.app&pcampaignid=web_share', '_blank');
+            }
+        }
+
+        const header = document.querySelector('header');
+
+        function updateHeaderLayout() {
+            if (!header) return;
+            const isMobile = window.innerWidth <= 1100;
+            if (isMobile) {
+                header.style.left = '12px';
+                header.style.right = '12px';
+                header.style.transform = 'none';
+                header.style.width = 'auto';
+                header.style.top = window.scrollY > 10 ? '12px' : '24px';
+            } else {
+                header.style.left = '50%';
+                header.style.right = '';
+                header.style.transform = 'translateX(-50%)';
+                header.style.width = window.scrollY > 50 ? '95%' : '90%';
+                header.style.top = window.scrollY > 50 ? '10px' : '24px';
+            }
+        }
+
+        let ticking = false;
+        window.addEventListener('scroll', function () {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    updateHeaderLayout();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        window.addEventListener('resize', updateHeaderLayout);
+
+        updateHeaderLayout();
+
+        document.addEventListener('DOMContentLoaded', function () {
+            lucide.createIcons();
+
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (mobileToggle && navLinks) {
+                mobileToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                });
+
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileToggle.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

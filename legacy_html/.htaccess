@@ -1,0 +1,14 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# Handle /Transfer/GetFeeLookup route (legacy from .NET)
+RewriteRule ^Transfer/GetFeeLookup$ api/GetFeeLookup.php [L,QSA]
+
+# Handle direct API calls
+RewriteRule ^api/GetFeeLookup$ api/GetFeeLookup.php [L,QSA]
+
+# Protect config file
+<Files "config.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
