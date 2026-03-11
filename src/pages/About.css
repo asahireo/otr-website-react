@@ -44,10 +44,16 @@
     box-shadow: var(--shadow-elevated);
 }
 
-.video-container-about video {
+.video-container-about video,
+.video-container-about iframe {
     width: 100%;
     height: auto;
     display: block;
+}
+
+.video-container-about iframe {
+    aspect-ratio: 16 / 9;
+    border: 0;
 }
 
 /* Ownership Section */

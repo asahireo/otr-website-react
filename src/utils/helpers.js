@@ -6,6 +6,11 @@ export function detectDevice() {
     return 'desktop';
 }
 
+export function getAssetPath(path) {
+    const normalizedPath = String(path || '').replace(/^\/+/, '');
+    return `${import.meta.env.BASE_URL}${normalizedPath}`;
+}
+
 export function redirectToAppStore() {
     const device = detectDevice();
     switch (device) {

@@ -39,10 +39,13 @@ const MobileApp = () => {
                         <div className="phone-mockup">
                             <div className="video-container">
                                 <div className="video-frame">
-                                    <video autoPlay muted loop playsInline>
-                                        <source src="/Assets/videos/otr-app-demo.mp4" type="video/mp4" />
-                                        <img src="/Assets/images/otr-app-demo.gif" alt="OTR App Demo" />
-                                    </video>
+                                    <iframe
+                                        src="https://www.youtube.com/embed/XvhUTvf3mhk?autoplay=1&mute=1&loop=1&playlist=XvhUTvf3mhk&controls=0&modestbranding=1&rel=0"
+                                        title="OTR App Demo"
+                                        loading="lazy"
+                                        allow="autoplay; encrypted-media; picture-in-picture"
+                                        referrerPolicy="strict-origin-when-cross-origin"
+                                    ></iframe>
                                 </div>
                             </div>
                         </div>

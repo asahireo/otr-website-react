@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { ArrowDown, ShieldCheck, Users, TrendingUp, Lock } from 'lucide-react';
-import { redirectToAppStore } from '../utils/helpers';
+import { getAssetPath, redirectToAppStore } from '../utils/helpers';
 import './About.css';
 
 const About = () => {
@@ -34,10 +34,14 @@ const About = () => {
                             </p>
                         </div>
                         <div className="video-container-about">
-                            <video controls poster="">
-                                <source src="/Assets/videos/OTR-vid.mp4" type="video/mp4" />
-                                Your browser does not support the video tag.
-                            </video>
+                            <iframe
+                                src="https://www.youtube.com/embed/XvhUTvf3mhk?rel=0"
+                                title="About OTR"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerPolicy="strict-origin-when-cross-origin"
+                                allowFullScreen
+                            ></iframe>
                         </div>
                     </div>
                 </div>
@@ -118,12 +122,13 @@ const About = () => {
 
                     <div className="partners-grid">
                         {[
-                            'aquila-logo.png', 'bkash.png', 'lendmn.png', 'linkaja.svg', 'mlhuiller.png',
-                            'ovo.png', 'Paytren.png', 'quickpay.png', 'refinitiv.png', 'samsara.png',
-                            'thunes.png', 'TrueMoneyIndo.png', 'mastercard.png', 'cityexpress.svg', 'moneygram.png'
+                            'bkash.png', 'lendmn.png', 'linkaja.svg', 'mlhuiller.png',
+                            'ovo.png', 'Paytren.png', 'quickpay.png', 'refinitiv.png',
+                            'samsara.png', 'thunes.png', 'TrueMoneyIndo.png', 'mastercard.png',
+                            'moneygram.png', 'xpatlogo.svg'
                         ].map(img => (
                             <div className="partner-card" key={img}>
-                                <img src={`/Assets/images/${img}`} alt={img.split('.')[0]} />
+                                <img src={getAssetPath(`Assets/images/${img}`)} alt={img.split('.')[0]} />
                             </div>
                         ))}
                     </div>
@@ -135,7 +140,7 @@ const About = () => {
                 <div className="container">
                     <div className="masb-content">
                         <div className="masb-badge">
-                            <img src="/Assets/images/MAMSB-Logo.png" alt="Malaysian Association of Money Services Business (MAMSB) logo" />
+                            <img src={getAssetPath('Assets/images/MAMSB-Logo.png')} alt="Malaysian Association of Money Services Business (MAMSB) logo" />
                         </div>
                         <h2>Associate Member of MAMSB</h2>
                         <p>

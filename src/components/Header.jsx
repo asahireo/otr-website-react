@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { redirectToAppStore } from '../utils/helpers';
+import { getAssetPath, redirectToAppStore } from '../utils/helpers';
 
 const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -74,7 +74,7 @@ const Header = () => {
             <nav>
                 <Link to="/" className="logo-container">
                     <div className="logo-icon">
-                        <img src="/Assets/images/otr-logo.svg" alt="OTR Logo" />
+                        <img src={getAssetPath('Assets/images/otr-logo.svg')} alt="OTR Logo" />
                     </div>
                     <span className="logo">
                         <span>One</span>
