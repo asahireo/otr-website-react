@@ -177,7 +177,7 @@ const Home = () => {
                         <div className="calculator-card">
                             <div className="calculator-header">Exchange Rate Calculator</div>
 
-                            <div className="calculator-content">
+                            <div className="calculator-body">
                                 {/* Receiver Country Selection */}
                                 <div className="section-label">Destination Country</div>
                                 <select
